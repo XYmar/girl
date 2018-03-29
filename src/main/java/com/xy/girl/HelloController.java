@@ -2,32 +2,27 @@ package com.xy.girl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 /*
 * @author XY
 * 这个类要通过web访问的话要加一个注解@RestController
 * */
 @RestController
+@RequestMapping("/hello")
 public class HelloController {
-
-    /*@Value("${prettyLevel}")
-    private String prettyLevel;      //通过注解把配置文件中的值注入到这个变量里了
-
-    @Value("${age}")
-    private Integer age;
-
-    @Value("${content}")
-    private String content;*/
 
     @Autowired
     private GirlProperties girlProperties;
 
-    @RequestMapping(value = "/hello",method = RequestMethod.GET)
-    public String say(){
-        return girlProperties.getPrettyLevel();
+   // @RequestMapping(value = "/say",method = RequestMethod.GET)
+    //@GetMapping(value = "/say")
+    @PostMapping(value = "/say")
+    public String say(@RequestParam(value = "id",required = false,defaultValue = "0") Integer myId){
+        return "id:" + myId;
+        //return "index";
+        //return girlProperties.getPrettyLevel();
         //return content;
         //return prettyLevel + age;
         //return "Hello Spring Boot!";

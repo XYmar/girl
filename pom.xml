@@ -37,6 +37,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            &lt;!&ndash; 单元测试必须要用到的 &ndash;&gt;
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>-->
+
     </dependencies>
 
     <!-- 下面是maven构建项目的时候的一个插件 -->

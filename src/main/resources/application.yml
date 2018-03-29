@@ -1,5 +1,3 @@
-server:
-  port: 8080
-prettyLevel: B
-age: 18
-content: "prettyLevel: ${prettyLevel},age: ${age}"
+spring:
+  profiles:
+    active: prod

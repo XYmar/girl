@@ -1,4 +1,4 @@
-package com.xy.girl;
+package com.xy.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

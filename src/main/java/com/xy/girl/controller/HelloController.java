@@ -1,6 +1,6 @@
-package com.xy.controller;
+package com.xy.girl.controller;
 
-import com.xy.properties.GirlProperties;
+import com.xy.girl.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

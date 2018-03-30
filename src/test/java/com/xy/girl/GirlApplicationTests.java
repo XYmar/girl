@@ -1,4 +1,4 @@
-package com.xy;
+package com.xy.girl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

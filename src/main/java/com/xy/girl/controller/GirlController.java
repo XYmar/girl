@@ -1,11 +1,13 @@
-package com.xy.controller;
+package com.xy.girl.controller;
 
-import com.xy.repository.GirlRepository;
-import com.xy.service.GirlService;
-import com.xy.domain.Girl;
+import com.xy.girl.domain.Girl;
+import com.xy.girl.repository.GirlRepository;
+import com.xy.girl.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,13 +31,23 @@ public class GirlController {
      * 添加一个女生
      * */
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@RequestParam("prettyLevel") String prettyLevel,
+    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+
+        girl.setPrettyLevel(girl.getPrettyLevel());
+        girl.setAge(girl.getAge());
+        return girlRepository.save(girl);
+    }
+    /*public Girl girlAdd(@RequestParam("prettyLevel") String prettyLevel,
                           @RequestParam("age") Integer age){
         Girl girl = new Girl();
         girl.setPrettyLevel(prettyLevel);
         girl.setAge(age);
         return girlRepository.save(girl);
-    }
+    }*/
 
     /*
      * 查询一个女生

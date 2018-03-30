@@ -1,6 +1,6 @@
-package com.xy.repository;
+package com.xy.girl.repository;
 
-import com.xy.domain.Girl;
+import com.xy.girl.domain.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

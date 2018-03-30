@@ -1,9 +1,10 @@
-package com.xy.domain;
+package com.xy.girl.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Girl {
@@ -14,6 +15,7 @@ public class Girl {
 
     private String prettyLevel;
 
+    @Min(value = 18,message = "未成年少女禁止入内")
     private Integer age;
 
     public Girl() {

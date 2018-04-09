@@ -1,8 +1,12 @@
 package com.xy.girl.controller;
 
 import com.xy.girl.domain.Girl;
+import com.xy.girl.domain.Result;
 import com.xy.girl.repository.GirlRepository;
 import com.xy.girl.service.GirlService;
+import com.xy.girl.utils.ResultUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +22,14 @@ public class GirlController {
 
     @Autowired
     private GirlService girlService;
+
+    private final static Logger logger = LoggerFactory.getLogger(GirlController.class);
     /**
      * 查询所有女生列表
      * */
     @GetMapping(value = "/girls")
     public List<Girl> girlList(){
+        logger.info("girlList");
         return girlRepository.findAll();
     }
 
@@ -31,15 +38,13 @@ public class GirlController {
      * 添加一个女生
      * */
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult){
+    public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
             return null;
+            //return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
 
-        girl.setPrettyLevel(girl.getPrettyLevel());
-        girl.setAge(girl.getAge());
-        return girlRepository.save(girl);
+        return ResultUtil.success(girlRepository.save(girl));
     }
     /*public Girl girlAdd(@RequestParam("prettyLevel") String prettyLevel,
                           @RequestParam("age") Integer age){
@@ -94,5 +99,13 @@ public class GirlController {
     @PostMapping(value = ("/girls/two"))
     public void girlTwo(){
         girlService.insertTwo();
+    }
+
+    /*
+    * 根据女生年龄返回不同信息
+    * */
+    @GetMapping(value = "/girls/getAge/{id}")
+    public  void getAge(@PathVariable("id") Integer id) throws Exception{
+        girlService.getAge(id);
     }
 }
